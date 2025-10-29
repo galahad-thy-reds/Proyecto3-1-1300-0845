@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Servicios\Clases\" />
+    <Folder Include="Servicios\Interfaces\" />
+  </ItemGroup>
+
 </Project>
