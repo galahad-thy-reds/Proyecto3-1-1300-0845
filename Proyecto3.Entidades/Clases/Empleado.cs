@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto3.Entidades.Clases
 {
+    /// <summary>
+    /// Clase que representa un Empleado
+    /// </summary>
     public class Empleado
     {
         #region Propiedades

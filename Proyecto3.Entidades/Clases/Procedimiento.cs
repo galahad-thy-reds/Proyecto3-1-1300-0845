@@ -1,0 +1,62 @@
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace Proyecto3.Entidades.Clases
+{
+    /// <summary>
+    /// Clase que representa un Procedimiento
+    /// </summary>
+    public class Procedimiento
+    {
+        #region Propiedades
+        /// <summary>
+        /// Identificador unico del procedimiento
+        /// </summary>
+        [DisplayName("Id del Procedimiento")]
+        public string Id { get; set; } = Guid.NewGuid().ToString()[..8];
+        /// <summary>
+        /// Cedula del contacto que solicita el procedimiento
+        /// </summary>
+        [Required(ErrorMessage = "Por favor, elija un cliente")]
+        [DisplayName("Cliente")]
+        public Cliente? Cliente { get; set; }
+        /// <summary>
+        /// Nombre de la mascota a la que se le realizara el procedimiento
+        /// </summary>
+        [Required(ErrorMessage = "Por favor, elija la mascota")]
+        [DisplayName("Mascota")]
+        public Mascota? Mascota { get; set; }
+        /// <summary>
+        /// Tipo de consulta a realizar
+        /// </summary>
+        [Required(ErrorMessage = "Por favor, seleccione un tipo de procedimiento")]
+        [DisplayName("Tipo Procedimiento")]
+        public TipoProcedimiento? TipoProcedimiento { get; set; }
+        /// <summary>
+        /// Estado del procedimiento (en proceso, facturado, agendado)
+        /// </summary>
+        [Required(ErrorMessage = "Por favor, seleccione un estado del procedimiento")]
+        public string? Estado { get; set; }
+        /// <summary>
+        /// Fecha en la que se realizara el procedimiento
+        /// </summary>
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Por favor, digite la fecha de nacimiento")]
+        public DateOnly Fecha { get; set; }
+        #endregion
+        #region Metodos
+        /// <summary>
+        /// Metodo para calcular el precio final del procedimiento con un impuesto del 13%
+        /// </summary>
+        /// <returns>PrecioFinal: Precio final del procedimiento con un impuesto del 13%</returns>
+        public double PrecioFinal(double impuesto = 1.13)
+        {
+            if (TipoProcedimiento is not null)
+            {
+                return TipoProcedimiento.Precio * impuesto;
+            }
+
+            return 0;
+        }
+    }
+}
