@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Proyecto3.AccesoDatos\Proyecto3.AccesoDatos.csproj" />
+    <ProjectReference Include="..\Proyecto3.Entidades\Proyecto3.Entidades.csproj" />
   </ItemGroup>
 
 </Project>
