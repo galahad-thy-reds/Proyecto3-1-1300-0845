@@ -58,5 +58,6 @@ namespace Proyecto3.Entidades.Clases
 
             return 0;
         }
+        #endregion
     }
 }
