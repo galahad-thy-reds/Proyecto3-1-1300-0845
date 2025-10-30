@@ -13,13 +13,13 @@ namespace Proyecto3.Entidades.Clases
         /// Identificador unico de la mascota
         /// </summary>
         [Key]
-        public int Id { get; set; } = System.Random.Shared.Next(1, 1000000);
+        public int Id { get; set; }
         /// <summary>
         /// Cedula del cliente o dueño de la mascota
         /// </summary>
         [Required(ErrorMessage = "Por favor, digite la cedula del cliente")]
         [DisplayName("Cedula del Cliente")]
-        public virtual string? CedulaCliente { get; set; }
+        public virtual string? ClienteCedula { get; set; }
         /// <summary>
         /// Nombre de la mascota
         /// </summary>

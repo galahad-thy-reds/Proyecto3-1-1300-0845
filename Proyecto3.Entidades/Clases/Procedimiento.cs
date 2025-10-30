@@ -27,11 +27,15 @@ namespace Proyecto3.Entidades.Clases
         [DisplayName("Mascota")]
         public Mascota? Mascota { get; set; }
         /// <summary>
+        /// Identificador del tipo de procedimiento a realizar
+        /// </summary>
+        public int TipoProcedimientoId { get; set; }
+        /// <summary>
         /// Tipo de consulta a realizar
         /// </summary>
         [Required(ErrorMessage = "Por favor, seleccione un tipo de procedimiento")]
         [DisplayName("Tipo Procedimiento")]
-        public TipoProcedimiento? TipoProcedimiento { get; set; }
+        public virtual TipoProcedimiento? TipoProcedimiento { get; set; }
         /// <summary>
         /// Estado del procedimiento (en proceso, facturado, agendado)
         /// </summary>
