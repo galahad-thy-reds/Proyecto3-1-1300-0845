@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Proyecto3.AccesoDatos.AccesoDB;
 using Proyecto3.Entidades.Clases;
-using System;
-using System.Runtime.ConstrainedExecution;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,14 +9,9 @@ namespace Proyecto3.WebAPI.Controllers
 {
     [Route("api/Empleado")]
     [ApiController]
-    public class EmpleadoController : ControllerBase
+    public class EmpleadoController(DBContexto dBContexto) : ControllerBase
     {
-        private readonly DBContexto _dbContexto;
-
-        public EmpleadoController(DBContexto dBContexto)
-        {
-            _dbContexto = dBContexto;
-        }
+        private readonly DBContexto _dbContexto = dBContexto;
 
         // GET: api/<EmpleadoController>
         [HttpGet("ListarEmpleados")]
@@ -35,6 +28,7 @@ namespace Proyecto3.WebAPI.Controllers
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
+        
         // POST api/<EmpleadoController>
         [HttpPost("CrearEmpleado")]
         public ActionResult CrearEmpleado([FromBody] Empleado empleado)
@@ -56,6 +50,7 @@ namespace Proyecto3.WebAPI.Controllers
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
+        
         // GET api/<EmpleadoController>/5
         [HttpGet("LeerEmpleado/{cedula}")]
         public ActionResult<Empleado> LeerEmpleado(string cedula)
@@ -76,6 +71,7 @@ namespace Proyecto3.WebAPI.Controllers
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
+        
         // PUT api/<EmpleadoController>/
         [HttpPut("ActualizarEmpleado")]
         public ActionResult<Empleado> ActualizarEmpleado([FromBody] Empleado empleado)
@@ -108,6 +104,7 @@ namespace Proyecto3.WebAPI.Controllers
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
+        
         // DELETE api/<EmpleadoController>/5
         [HttpDelete("EliminarEmpleado/{cedula}")]
         public ActionResult EliminarEmpleado(string cedula)
