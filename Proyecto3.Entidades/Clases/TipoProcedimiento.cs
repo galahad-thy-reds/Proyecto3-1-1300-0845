@@ -26,7 +26,6 @@ namespace Proyecto3.Entidades.Clases
         /// <summary>
         /// Precio del tipo de procedimiento
         /// </summary>
-        [DataType("decimal(18,2)")]
         [DisplayName("Precio del procedimiento (sin IVA)")]
         public double Precio { get; set; }
         #endregion
