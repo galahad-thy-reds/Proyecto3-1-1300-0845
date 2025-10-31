@@ -54,7 +54,7 @@ namespace Proyecto3.Entidades.Clases
         /// <summary>
         /// Lista de mascotas asociadas al cliente
         /// </summary>
-        public virtual List<Mascota> Mascotas { get; set; } = [];
+        public ICollection<Mascota>? Mascotas { get; set; } = [];
         #endregion
     }
 }

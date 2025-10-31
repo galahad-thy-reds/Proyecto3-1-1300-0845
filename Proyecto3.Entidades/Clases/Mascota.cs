@@ -19,7 +19,7 @@ namespace Proyecto3.Entidades.Clases
         /// </summary>
         [Required(ErrorMessage = "Por favor, digite la cedula del cliente")]
         [DisplayName("Cedula del Cliente")]
-        public virtual string? ClienteCedula { get; set; }
+        public string? ClienteCedula { get; set; }
         /// <summary>
         /// Nombre de la mascota
         /// </summary>
