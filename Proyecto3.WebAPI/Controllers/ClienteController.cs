@@ -56,7 +56,9 @@ namespace Proyecto3.WebAPI.Controllers
         {
             try
             {
-                var cliente = _dbContexto.Clientes.FirstOrDefault(c => c.Cedula == cedula);
+                var cliente = _dbContexto.Clientes
+                    .Include(static c => c.Mascotas)
+                    .FirstOrDefault(c => c.Cedula == cedula);
                 if (cliente == null)
                 {
                     return NotFound($"Cliente {cedula} no encontrado");
@@ -104,12 +106,16 @@ namespace Proyecto3.WebAPI.Controllers
             try
             {
                 var cliente = _dbContexto.Clientes.FirstOrDefault(c => c.Cedula == cedula);
+
                 if (cliente == null)
                 {
                     return NotFound($"Cliente {cedula} no encontrado");
                 }
-                _dbContexto.Clientes.Remove(cliente);
-                _dbContexto.SaveChanges();
+
+                EliminarProcedimientosDelCliente(cliente);
+                EliminarMascotasDelCliente(cliente);
+                EliminarCliente(cliente);
+
                 return NoContent();
             }
             catch (DbUpdateException ex)
@@ -120,6 +126,43 @@ namespace Proyecto3.WebAPI.Controllers
             {
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
+        }
+
+        /// <summary>
+        /// Metodo para eliminar un cliente.
+        /// </summary>
+        /// <param name="cliente">Objeto <Proyecto3.Entidades.Clases.Cliente> para eliminar.</param>
+        private void EliminarCliente(Cliente cliente)
+        {
+            _dbContexto.Clientes.Remove(cliente);
+
+            _dbContexto.SaveChanges();
+        }
+        /// <summary>
+        /// Metodo para eliminar las mascotas de un cliente.
+        /// </summary>
+        /// <param name="cliente">Objeto <Proyecto3.Entidades.Clases.Cliente>.</param>
+        private void EliminarMascotasDelCliente(Cliente cliente)
+        {
+            var mascotas = _dbContexto.Mascotas.Where(m => m.ClienteCedula == cliente.Cedula).ToList();
+
+            _dbContexto.Mascotas.RemoveRange(mascotas);
+            _dbContexto.SaveChanges();
+        }
+        /// <summary>
+        /// Metodo para eliminar los procedimientos de un cliente.
+        /// </summary>
+        /// <param name="cliente">Objeto <Proyecto3.Entidades.Clases.Cliente>.</param>
+        private void EliminarProcedimientosDelCliente(Cliente cliente)
+        {
+            var procedimientos = from p in _dbContexto.Procedimientos
+                                 join c in _dbContexto.Clientes on p.Cliente!.Cedula equals c.Cedula
+                                 where c.Cedula == cliente.Cedula
+                                 select p;
+
+            _dbContexto.Procedimientos.RemoveRange(procedimientos);
+
+            _dbContexto.SaveChanges();
         }
     }
 }

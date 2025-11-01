@@ -110,8 +110,9 @@ namespace Proyecto3.WebAPI.Controllers
                     return NotFound($"Mascota {id} no encontrada");
                 }
 
-                _dbContexto.Mascotas.Remove(mascota);
-                _dbContexto.SaveChanges();
+                EliminarProcedimientosDeMascota(mascota);
+                EliminarMascota(mascota);
+
                 return NoContent();
             }
             catch (DbUpdateException ex)
@@ -124,6 +125,27 @@ namespace Proyecto3.WebAPI.Controllers
             }
 
 
+        }
+        private bool EliminarMascota(Mascota mascota)
+        {
+            _dbContexto.Mascotas.Remove(mascota);
+
+            _dbContexto.SaveChanges();
+
+            return true;
+        }
+
+        private bool EliminarProcedimientosDeMascota(Mascota mascota)
+        {
+            var procedimientos = from p in _dbContexto.Procedimientos
+                                 join m in _dbContexto.Mascotas on p.Mascota!.Id equals m.Id
+                                 where m.Id == mascota.Id
+                                 select p;
+            
+            _dbContexto.Procedimientos.RemoveRange(procedimientos);
+            _dbContexto.SaveChanges();
+            
+            return true;
         }
     }
 }
