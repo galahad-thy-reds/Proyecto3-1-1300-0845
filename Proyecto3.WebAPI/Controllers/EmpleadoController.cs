@@ -13,6 +13,24 @@ namespace Proyecto3.WebAPI.Controllers
     {
         private readonly DBContexto _dbContexto = dBContexto;
 
+        // GET api/<EmpleadoController>/5
+        [HttpGet("BuscarEmpleado/{criterioBusqueda}")]
+        public ActionResult<IEnumerable<Empleado>> BuscarEmpleado(string criterioBusqueda)
+        {
+            try
+            {
+                var empleados = _dbContexto.Empleados
+                    .Where(e => e.Cedula!.Contains(criterioBusqueda) ||
+                                e.TipoEmpleado!.Contains(criterioBusqueda))
+                    .ToList();
+                return Ok(empleados);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+
         // GET: api/<EmpleadoController>
         [HttpGet("ListarEmpleados")]
         public ActionResult<IEnumerable<Empleado>> ListarEmpleados()
@@ -121,7 +139,7 @@ namespace Proyecto3.WebAPI.Controllers
                 _dbContexto.Empleados.Remove(empleado);
                 _dbContexto.SaveChanges();
 
-                return Ok($"Empleado {empleado.Cedula}, eliminado exitosamente");
+                return NoContent();
             }
             catch (DbUpdateException ex)
             {
