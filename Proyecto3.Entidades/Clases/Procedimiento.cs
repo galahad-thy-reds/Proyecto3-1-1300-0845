@@ -13,17 +13,17 @@ namespace Proyecto3.Entidades.Clases
         /// Identificador unico del procedimiento
         /// </summary>
         [DisplayName("Id del Procedimiento")]
-        public string Id { get; set; } = Guid.NewGuid().ToString()[..8];
+        public int Id { get; set; }
+        public string? ClienteCedula { get; set; }
         /// <summary>
         /// Cedula del contacto que solicita el procedimiento
         /// </summary>
-        [Required(ErrorMessage = "Por favor, elija un cliente")]
         [DisplayName("Cliente")]
         public Cliente? Cliente { get; set; }
+        public int MascotaId { get; set; }
         /// <summary>
         /// Nombre de la mascota a la que se le realizara el procedimiento
         /// </summary>
-        [Required(ErrorMessage = "Por favor, elija la mascota")]
         [DisplayName("Mascota")]
         public Mascota? Mascota { get; set; }
         /// <summary>
@@ -33,7 +33,6 @@ namespace Proyecto3.Entidades.Clases
         /// <summary>
         /// Tipo de consulta a realizar
         /// </summary>
-        [Required(ErrorMessage = "Por favor, seleccione un tipo de procedimiento")]
         [DisplayName("Tipo Procedimiento")]
         public virtual TipoProcedimiento? TipoProcedimiento { get; set; }
         /// <summary>
@@ -45,7 +44,6 @@ namespace Proyecto3.Entidades.Clases
         /// Fecha en la que se realizara el procedimiento
         /// </summary>
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Por favor, digite la fecha de nacimiento")]
         public DateOnly Fecha { get; set; }
         #endregion
         #region Metodos
