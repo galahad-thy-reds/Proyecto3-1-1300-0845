@@ -13,6 +13,25 @@ namespace Proyecto3.WebAPI.Controllers
     {
         private readonly DBContexto _dbContexto = dBContexto;
 
+        // GET: api/<ClienteController>/5
+        [HttpGet("BuscarCliente/{criterioBusqueda}")]
+        public ActionResult<IEnumerable<Cliente>> BuscarCliente(string criterioBusqueda)
+        {
+            try
+            {
+                var clientes = _dbContexto.Clientes
+                    .Where(c => c.Cedula!.Contains(criterioBusqueda) ||
+                                c.Nombre!.Contains(criterioBusqueda))
+                    .ToList();
+
+                return Ok(clientes);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+
         // GET: api/<ClienteController>
         [HttpGet("ListarClientes")]
         public ActionResult<IEnumerable<Cliente>> ListarClientes()
@@ -72,21 +91,28 @@ namespace Proyecto3.WebAPI.Controllers
         }
 
         // PUT api/<ClienteController>/5
-        [HttpPut("ActualizarCliente/{cedula}")]
-        public ActionResult ActualizarCliente(string cedula, [FromBody] Entidades.Clases.Cliente clienteActualizado)
+        [HttpPut("ActualizarCliente")]
+        public ActionResult ActualizarCliente([FromBody] Cliente clienteActualizado)
         {
             try
             {
-                var cliente = _dbContexto.Clientes.FirstOrDefault(c => c.Cedula == cedula);
+                var cliente = _dbContexto.Clientes.FirstOrDefault(c => c.Cedula == clienteActualizado.Cedula);
+                
                 if (cliente == null)
                 {
-                    return NotFound($"Cliente {cedula} no encontrado");
+                    return NotFound($"Cliente {clienteActualizado.Cedula} no encontrado");
                 }
+
                 cliente.Nombre = clienteActualizado.Nombre;
+                cliente.Provincia = clienteActualizado.Provincia;
+                cliente.Canton = clienteActualizado.Canton;
+                cliente.Distrito = clienteActualizado.Distrito;
                 cliente.Direccion = clienteActualizado.Direccion;
                 cliente.Telefono = clienteActualizado.Telefono;
-                // Actualizar otros campos según sea necesario
+                cliente.ContactoPreferido = clienteActualizado.ContactoPreferido;
+
                 _dbContexto.SaveChanges();
+
                 return NoContent();
             }
             catch (DbUpdateException ex)
