@@ -11,4 +11,13 @@
     <Folder Include="Servicios\Interfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Proyecto3.Entidades\Proyecto3.Entidades.csproj" />
+  </ItemGroup>
+
 </Project>
