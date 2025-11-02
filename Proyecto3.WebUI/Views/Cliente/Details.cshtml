@@ -1,0 +1,136 @@
+﻿@model Proyecto3.Entidades.Clases.Cliente
+
+@{
+    ViewData["Title"] = "Detalles del Cliente";
+}
+
+<h1>Detalle del CLiente</h1>
+
+<div>
+    <h4>Datos del Cliente</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Provincia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Provincia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Canton)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Canton)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Distrito)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Distrito)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ContactoPreferido)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContactoPreferido)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <h4>Mascotas del Cliente</h4>
+    @if (Model.Mascotas is not null && Model.Mascotas.Count() > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].ClienteCedula)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].NombreMascota)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].Especie)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].Raza)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].Edad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].Color)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].UltimaAtencion)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Mascotas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClienteCedula)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreMascota)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Especie)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Raza)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Edad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UltimaAtencion)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            <strong>¡Atencion!</strong> Este cliente no tiene mascotas asociadas.
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Editar", "Edit", new { cedula = Model.Cedula }) |
+    <a asp-action="Index">Volver a lista de clientes</a>
+</div>

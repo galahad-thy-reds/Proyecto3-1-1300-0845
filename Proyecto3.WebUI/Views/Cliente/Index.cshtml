@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Proyecto3.Entidades.Clases.Cliente>
+
+@{
+    ViewData["Title"] = "Lista de Clientes";
+}
+
+<h1>Lista de Clientes</h1>
+
+<p>
+    <a asp-action="Create">Agregar Cliente</a>
+</p>
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        <form asp-action="Search" class="input-group">
+            <input name="criterioBusqueda" class="form-control me-1" type="search" placeholder="Buscar por Cedula o Nombre" />
+            <div class="input-group-append">
+                <button type="submit" value="Buscar" class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model is not null && Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cedula)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Provincia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Canton)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Distrito)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Direccion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ContactoPreferido)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cedula)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Provincia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Canton)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Distrito)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactoPreferido)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { cedula = item.Cedula }) |
+                        @Html.ActionLink("Detalles", "Details", new { cedula = item.Cedula }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { cedula = item.Cedula })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-danger">
+        <strong>¡Atencion!</strong> No hay datos de Clientes.
+    </div>
+}
