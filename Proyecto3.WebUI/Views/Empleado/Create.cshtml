@@ -1,0 +1,56 @@
+﻿@model Proyecto3.Entidades.Clases.Empleado
+
+@{
+    ViewData["Title"] = "Insertar Empleado";
+}
+
+<h1>Insertar Empleado</h1>
+
+<h4>Datos del Empleado</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cedula" class="control-label"></label>
+                <input asp-for="Cedula" class="form-control" />
+                <span asp-validation-for="Cedula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaNacimiento" class="control-label"></label>
+                <input type="date" asp-for="FechaNacimiento" class="form-control" />
+                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaIngreso" class="control-label"></label>
+                <input type="date" asp-for="FechaIngreso" class="form-control" />
+                <span asp-validation-for="FechaIngreso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalarioDiario" class="control-label"></label>
+                <input asp-for="SalarioDiario" class="form-control" />
+                <span asp-validation-for="SalarioDiario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoEmpleado" class="control-label"></label>
+                <select asp-for="TipoEmpleado" class="form-control">
+                    <option value="Veterinario">Veterinario</option>
+                    <option value="Asistente">Asistente</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Manteminiento">Manteminiento</option>
+                    <option value="Groomer">Groomer</option>
+                </select>
+                <span asp-validation-for="TipoEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Insertar" class="btn btn-primary" /> |
+                <a asp-action="Index">Volver a lista de empleados</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
