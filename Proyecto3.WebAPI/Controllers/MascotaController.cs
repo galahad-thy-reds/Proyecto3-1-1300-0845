@@ -67,17 +67,21 @@ namespace Proyecto3.WebAPI.Controllers
             }
         }
 
-        // PUT api/<MascotaController>/5
-        [HttpPut("ActualizarMascota/{id}")]
+        // PUT api/<MascotaController>
+        [HttpPut("ActualizarMascota")]
         public ActionResult ActualizarMascota([FromBody] Mascota mascotaActualizada)
         {
             try
             {
                 var mascota = _dbContexto.Mascotas.FirstOrDefault(m => m.Id == mascotaActualizada.Id);
+
                 if (mascota == null)
                 {
                     return NotFound($"Mascota {mascotaActualizada.Id} no encontrada");
                 }
+
+                mascota.UltimaAtencion = mascotaActualizada.UltimaAtencion;
+                mascota.ClienteCedula = mascotaActualizada.ClienteCedula;                
                 mascota.NombreMascota = mascotaActualizada.NombreMascota;
                 mascota.Especie = mascotaActualizada.Especie;
                 mascota.Raza = mascotaActualizada.Raza;

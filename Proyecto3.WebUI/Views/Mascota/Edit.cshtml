@@ -1,0 +1,71 @@
+﻿@model Proyecto3.Entidades.Clases.Mascota
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Mascota</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ClienteCedula" class="control-label"></label>
+                @Html.DropDownList("ClienteCedula", ViewBag.ClientesDropDownList, " -- Seleccionar un Cliente -- ", new { @class = "form-control" })
+                <span asp-validation-for="ClienteCedula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreMascota" class="control-label"></label>
+                <input asp-for="NombreMascota" class="form-control" />
+                <span asp-validation-for="NombreMascota" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Especie" class="control-label"></label>
+                <select asp-for="Especie" class="form-control">
+                    <option value="Caballo">Caballo</option>
+                    <option value="Perro">Perro</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Pez">Pez</option>
+                    <option value="Cabra">Cabra</option>
+                    <option value="Conejo">Vaca</option>
+                    <option value="Cerdo">Cerdo</option>
+                    <option value="Roedor">Roedor</option>
+                    <option value="Serpiente">Serpiente</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <span asp-validation-for="Especie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Raza" class="control-label"></label>
+                <input asp-for="Raza" class="form-control" />
+                <span asp-validation-for="Raza" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Edad" class="control-label"></label>
+                <input asp-for="Edad" class="form-control" />
+                <span asp-validation-for="Edad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UltimaAtencion" class="control-label"></label>
+                <input type="date" asp-for="UltimaAtencion" class="form-control" />
+                <span asp-validation-for="UltimaAtencion" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Guardar" class="btn btn-primary" /> |
+                <a asp-action="Index">Volver a la lista de mascotas</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

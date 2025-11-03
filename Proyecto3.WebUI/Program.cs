@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IEmpleadoServicio, EmpleadoServicio>();
 builder.Services.AddSingleton<IClienteServicio, ClienteServicio>();
+builder.Services.AddSingleton<IMascotaServicio, MascotaServicio>();
 
 var app = builder.Build();
 
