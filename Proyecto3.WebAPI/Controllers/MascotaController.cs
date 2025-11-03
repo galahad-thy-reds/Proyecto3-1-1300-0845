@@ -13,6 +13,32 @@ namespace Proyecto3.WebAPI.Controllers
     {
         private readonly DBContexto _dbContexto = dBContexto;
 
+        // GET: api/<MascotaController>/5
+        [HttpGet("BuscarMascota/{criterioBusqueda}")]
+        public ActionResult<IEnumerable<Mascota>> BuscarMascota(string criterioBusqueda)
+        {
+            try
+            {
+                var mascotas = _dbContexto.Mascotas
+                    .Where(m => m.ClienteCedula!.Contains(criterioBusqueda) ||
+                                m.Especie!.Contains(criterioBusqueda) ||
+                                m.Raza!.Contains(criterioBusqueda) ||
+                                m.Color!.Contains(criterioBusqueda) ||
+                                m.NombreMascota!.Contains(criterioBusqueda))
+                    .ToList();
+                if (mascotas.Count == 0)
+                {
+                    return NotFound("No se encontraron mascotas que coincidan con el criterio de búsqueda");
+                }
+                return Ok(mascotas);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+
+        }
+
         // GET: api/<MascotaController>
         [HttpGet("ListarMascotas")]
         public ActionResult<IEnumerable<Mascota>> ListarMascotas()

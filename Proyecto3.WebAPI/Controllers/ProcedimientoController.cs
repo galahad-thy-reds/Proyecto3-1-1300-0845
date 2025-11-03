@@ -23,10 +23,10 @@ namespace Proyecto3.WebAPI.Controllers
                     .Include(p => p.Cliente)
                     .Include(p => p.Mascota)
                     .Include(p => p.TipoProcedimiento)
-                    .Where(p => p.Cliente!.Cedula!.Contains(criterioBusqueda, StringComparison.OrdinalIgnoreCase) ||
-                                p.Mascota!.NombreMascota!.Contains(criterioBusqueda, StringComparison.OrdinalIgnoreCase) ||
-                                p.TipoProcedimiento!.Nombre!.Contains(criterioBusqueda, StringComparison.OrdinalIgnoreCase) ||
-                                p.Estado!.Contains(criterioBusqueda, StringComparison.OrdinalIgnoreCase))
+                    .Where(p => p.Cliente!.Cedula!.Contains(criterioBusqueda) ||
+                                p.Mascota!.NombreMascota!.Contains(criterioBusqueda) ||
+                                p.TipoProcedimiento!.Nombre!.Contains(criterioBusqueda) ||
+                                p.Estado!.Contains(criterioBusqueda))
                     .ToList();
 
                 return Ok(procedimientos);
