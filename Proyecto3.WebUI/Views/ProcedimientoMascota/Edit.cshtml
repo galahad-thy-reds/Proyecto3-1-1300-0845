@@ -1,0 +1,77 @@
+﻿@model Proyecto3.Entidades.Clases.Procedimiento
+
+@{
+    ViewData["Title"] = "Editar Procedimiento";
+}
+
+<h1>Editar Procedimiento</h1>
+
+<h4>Datos del Procedimiento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Id" class="form-control" hidden="hidden" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Cliente" class="control-label"></label>
+                @Html.DropDownList("ClientesId", ViewBag.ClientesDropDownList, " -- Seleccionar un Cliente -- ", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Mascota" class="control-label"></label>
+                @Html.DropDownList("MascotasId", ViewBag.MascotasDropDownList, " -- Seleccionar una Mascota -- ", new { @class = "form-control" })
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TipoProcedimiento" class="control-label"></label>
+                @Html.DropDownList("TipoProcedimientoId", ViewBag.TiposDeProcedimientos, ViewBag.TiposDeProcedimientos.SelectedValue, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input type="date" asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                <select asp-for="Estado" class="form-control">
+                    <option value="En Proceso">En Proceso</option>
+                    <option value="Facturado">Facturado</option>
+                    <option value="Agendado">Agendado</option>
+                </select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Guardar" class="btn btn-primary" /> |
+                <a asp-action="Index">Volver a la lista de procedimiento</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @* Este codigo se obtuvo y modifico de: https://www.rafaelacosta.net/Blog/2019/11/24/c%c3%b3mo-crear-un-cascading-dropdownlist-en-aspnet-mvc?AspxAutoDetectCookieSupport=1 *@
+    <script>
+        $(document).ready(function () {
+            $("#ClientesId").change(function () {
+                $.get("/ProcedimientoMascota/ObtenerMascotas", { cedula: $("#ClientesId").val() }, function (data) {
+                    // VACIAMOS EL DropDownList
+                    $("#MascotasId").empty();
+                    var selectedIndex = $("#ClientesId").prop("selectedIndex");
+                    if(selectedIndex > 0) {
+                        // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
+                        $("#MascotasId").append("<option value> -- Seleccionar Mascota de " + $("#ClientesId option:selected").text() + " --</option>")
+                        // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
+                        $.each(data, function (index, row) {
+                            $("#MascotasId").append("<option value='" + row.id + "'>" + row.nombreMascota + "</option>")
+                        });
+                    } else {
+                        $("#MascotasId").append("<option value>  -- Seleccionar Mascota -- </option>")
+                    }
+                });
+            });
+        });
+    </script>
+}

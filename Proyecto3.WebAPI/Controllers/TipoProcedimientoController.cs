@@ -12,9 +12,28 @@ namespace Proyecto3.WebAPI.Controllers
     {
         private readonly DBContexto _dbContexto = dBContexto;
 
+        // GET api/<TipoProcedimientoController>/5
+        [HttpGet("LeerTipoProcedimiento/{id}")]
+        public ActionResult<TipoProcedimiento> LeerTipoProcedimiento(int id)
+        {
+            try
+            {
+                var tipoProcedimiento = _dbContexto.TiposProcedimiento.FirstOrDefault(tp => tp.Id == id);
+                if (tipoProcedimiento == null)
+                {
+                    return NotFound($"Tipo de procedimiento con ID {id} no encontrado.");
+                }
+                return Ok(tipoProcedimiento);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+
         // GET: api/<TipoProcedimientoController>
-        [HttpGet]
-        public ActionResult<IEnumerable<TipoProcedimiento>> ListarTipoProcedimiento()
+        [HttpGet("ListarTiposProcedimiento")]
+        public ActionResult<IEnumerable<TipoProcedimiento>> ListarTiposProcedimiento()
         {
             try
             {

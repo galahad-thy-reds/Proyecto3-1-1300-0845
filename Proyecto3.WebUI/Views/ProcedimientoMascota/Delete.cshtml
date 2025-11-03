@@ -1,0 +1,113 @@
+﻿@model Proyecto3.Entidades.Clases.Procedimiento
+
+@{
+    ViewData["Title"] = "Eliminar Procedimiento";
+}
+
+<h1>Eliminar Procedimiento</h1>
+
+<h3>¿Esta seguro que desea eliminar este Procedimiento?</h3>
+<div>
+    <h4>Datos del Procedimiento</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Precio Final
+        </dt>
+        <dd class="col-sm-10">
+            @String.Format("{0:0.00}", Model.PrecioFinal())
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoProcedimiento!.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TipoProcedimiento!.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+    </dl>
+    <h4>Datos del Cliente</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente!.Cedula)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cliente!.Cedula)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente!.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cliente!.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente!.Telefono)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cliente!.Telefono)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente!.ContactoPreferido)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cliente!.ContactoPreferido)
+        </dd>
+    </dl>
+    <h4>Datos de la Mascota</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mascota!.NombreMascota)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mascota!.NombreMascota)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mascota!.Especie)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mascota!.Especie)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mascota!.Raza)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mascota!.Raza)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mascota!.Edad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mascota!.Edad)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mascota!.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mascota!.Color)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mascota!.UltimaAtencion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mascota!.UltimaAtencion)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        @Html.Hidden("id", Model.Id)
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver a la lista de procedimiento</a>
+    </form>
+</div>

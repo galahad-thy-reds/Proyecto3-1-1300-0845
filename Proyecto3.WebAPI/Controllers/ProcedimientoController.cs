@@ -7,7 +7,7 @@ using Proyecto3.Entidades.Clases;
 
 namespace Proyecto3.WebAPI.Controllers
 {
-    [Route("api/Procedimiento")]
+    [Route("api/Procedimientos_Mascotas")]
     [ApiController]
     public class ProcedimientoController(DBContexto dBContexto) : ControllerBase
     {
@@ -137,16 +137,16 @@ namespace Proyecto3.WebAPI.Controllers
         }
 
         // DELETE api/<ProcedimientoController>/5
-        [HttpDelete("EliminarProcedimiento/")]
-        public ActionResult EliminarProcedimiento([FromBody] Procedimiento procedimientoAEliminar)
+        [HttpDelete("EliminarProcedimiento/{id}")]
+        public ActionResult EliminarProcedimiento(int id)
         {
             try
             {
-                var procedimiento = _dbContexto.Procedimientos.FirstOrDefault(p => p.Id == procedimientoAEliminar.Id);
+                var procedimiento = _dbContexto.Procedimientos.FirstOrDefault(p => p.Id == id);
                 
                 if (procedimiento == null)
                 {
-                    return NotFound($"Procedimiento {procedimientoAEliminar.Id} no encontrado");
+                    return NotFound($"Procedimiento {id} no encontrado");
                 }
 
                 _dbContexto.Procedimientos.Remove(procedimiento);

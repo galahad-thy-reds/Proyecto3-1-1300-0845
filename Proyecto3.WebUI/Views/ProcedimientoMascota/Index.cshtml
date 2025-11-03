@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Proyecto3.Entidades.Clases.Procedimiento>
+
+@{
+    ViewData["Title"] = "Lista de Procedimientos";
+}
+
+<h1>Lista de Procedimientos</h1>
+
+<p>
+    <a asp-action="Create">Agregar Procedimiento</a>
+</p>
+
+<div class="row mb-3">
+    <div class="col-md-5">
+        <form asp-action="Search" class="input-group">
+            <input name="criterioBusqueda" class="form-control me-1" type="search" placeholder="Buscar por Cedula, Nombre Mascota, Tipo Procedimiento o Estado" />
+            <div class="input-group-append">
+                <button type="submit" value="Buscar" class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>
+@if (Model is not null && Model.Count() > 0)
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente!.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mascota!.NombreMascota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoProcedimiento!.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente!.Nombre)
+            </td>
+            <td> 
+                @Html.DisplayFor(modelItem => item.Mascota!.NombreMascota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoProcedimiento!.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}
+else
+{
+    <div class="alert alert-danger">
+        <strong>¡Atencion!</strong> No hay Procedimientos registrados.
+    </div>
+}

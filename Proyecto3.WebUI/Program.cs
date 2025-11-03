@@ -8,6 +8,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IEmpleadoServicio, EmpleadoServicio>();
 builder.Services.AddSingleton<IClienteServicio, ClienteServicio>();
 builder.Services.AddSingleton<IMascotaServicio, MascotaServicio>();
+builder.Services.AddSingleton<ITipoProcedimientoServicio, TipoProcedimientoServicio>();
+builder.Services.AddSingleton<IProcedimientoServicio, ProcedimientoServicio>();
 
 var app = builder.Build();
 
