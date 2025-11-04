@@ -33,8 +33,7 @@ namespace Proyecto3.WebAPI.Controllers
                 IEnumerable<Procedimiento> procedimientosVacunacionSemanaSiguiente = _dbContexto.Procedimientos
                     .Include(p => p.Cliente)
                     .Where(p => p.TipoProcedimiento!.Nombre!.Equals("Vacunas anuales") &&
-                                p.Fecha >= inicioSemanaSiguiente &&
-                                p.Fecha <= finSemanaSiguiente)
+                                p.Fecha <= finSemanaSiguiente.AddYears(-1) && p.Fecha <= finSemanaSiguiente.AddYears(-1))
                     .ToList();
 
                 IEnumerable<Cliente> clientes = procedimientosVacunacionSemanaSiguiente
