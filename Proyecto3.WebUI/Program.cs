@@ -10,6 +10,7 @@ builder.Services.AddSingleton<IClienteServicio, ClienteServicio>();
 builder.Services.AddSingleton<IMascotaServicio, MascotaServicio>();
 builder.Services.AddSingleton<ITipoProcedimientoServicio, TipoProcedimientoServicio>();
 builder.Services.AddSingleton<IProcedimientoServicio, ProcedimientoServicio>();
+builder.Services.AddSingleton<IReporteServicio, ReporteServicio>();
 
 var app = builder.Build();
 

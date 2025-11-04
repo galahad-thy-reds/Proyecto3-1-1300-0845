@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Proyecto3.Entidades.Clases.Cliente>
+
+@{
+    ViewData["Title"] = "Reportes";
+}
+
+<h1>Reportes</h1>
+
+<div class="text-body">
+    <p>
+        A continuacion se listan los clientes que según la proyección ya le corresponde el procedimiento de vacunación anual la semana que viene de acuerdo a la fecha actual.
+    </p>
+</div>
+
+@if (Model is not null)
+{
+    @if (Model.Count() > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cedula)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Provincia)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Canton)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Distrito)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Direccion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Telefono)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ContactoPreferido)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cedula)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Provincia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Canton)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Distrito)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Direccion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ContactoPreferido)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <strong>¡Atencion!</strong> No hey necesidad de agendar vacunacion anual para la Mascota.
+        </div>
+    }
+}
