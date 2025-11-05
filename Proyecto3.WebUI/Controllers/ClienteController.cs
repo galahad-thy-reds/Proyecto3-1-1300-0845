@@ -114,11 +114,11 @@ namespace Proyecto3.WebUI.Controllers
         // POST: ClienteController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Cliente cliente)
+        public async Task<ActionResult> Delete(Cliente cliente)
         {
             try
             {
-                _clienteServicio.EliminarCliente(cliente.Cedula!);
+                await _clienteServicio.EliminarCliente(cliente.Cedula!);
 
                 return RedirectToAction(nameof(Index));
             }

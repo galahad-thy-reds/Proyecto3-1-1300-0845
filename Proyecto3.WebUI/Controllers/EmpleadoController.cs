@@ -115,11 +115,11 @@ namespace Proyecto3.WebUI.Controllers
         // POST: EmpleadoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Empleado empleado)
+        public async Task<ActionResult> Delete(Empleado empleado)
         {
             try
             {
-                _empleadoServicio.EliminarEmpleado(empleado.Cedula!);
+                await _empleadoServicio.EliminarEmpleado(empleado.Cedula!);
 
                 return RedirectToAction(nameof(Index));
             }
