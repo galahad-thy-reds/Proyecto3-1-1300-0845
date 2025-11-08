@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecto3.Entidades.Clases
 {
@@ -39,6 +40,7 @@ namespace Proyecto3.Entidades.Clases
         /// <summary>
         /// Edad de la mascota en años (puede ser decimal, por ejemplo: 2.5)
         /// </summary>
+        [Column(TypeName = "decimal(18,2)")]
         [Required(ErrorMessage = "Por favor, indique la edad de la mascota")]
         public decimal Edad { get; set; }
         /// <summary>

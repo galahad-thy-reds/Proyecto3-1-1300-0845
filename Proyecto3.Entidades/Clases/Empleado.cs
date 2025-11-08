@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecto3.Entidades.Clases
 {
@@ -33,6 +34,7 @@ namespace Proyecto3.Entidades.Clases
         /// Salario por dia del Empleado
         /// </summary>
         [DisplayName("Salario por Dia")]
+        [Column(TypeName = "decimal(18,2)")]
         [Required(ErrorMessage = "Por favor, el salario por dia")]
         public decimal SalarioDiario { get; set; }
         /// <summary>
