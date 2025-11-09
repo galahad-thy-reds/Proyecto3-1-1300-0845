@@ -65,6 +65,62 @@
         <h4>Datos las mascotas</h4>
         @if (Model.Mascotas is not null && Model.Mascotas.Count() > 0)
         {
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].ClienteCedula)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].NombreMascota)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].Especie)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].Raza)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].Edad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].Color)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascotas[0].UltimaAtencion)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Mascotas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClienteCedula)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreMascota)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Especie)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Raza)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Edad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UltimaAtencion)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>            
         }
         else
         {
