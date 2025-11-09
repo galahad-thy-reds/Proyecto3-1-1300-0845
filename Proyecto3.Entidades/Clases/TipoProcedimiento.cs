@@ -12,6 +12,7 @@ namespace Proyecto3.Entidades.Clases
         /// <summary>
         /// Identificador unico del tipo de procedimiento
         /// </summary>
+        [DisplayName("Tipo Procedimiento")]
         public int Id { get; set; }
         /// <summary>
         /// Nombre del tipo del procedimiento (consulta general, vacunacion, desparasitacion, cirugia, emergencia, otro)
