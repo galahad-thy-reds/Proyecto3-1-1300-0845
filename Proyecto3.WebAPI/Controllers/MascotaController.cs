@@ -7,7 +7,7 @@ using Proyecto3.Entidades.Clases;
 
 namespace Proyecto3.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Mascota")]
     [ApiController]
     public class MascotaController(DBContexto dBContexto) : ControllerBase
     {
@@ -156,6 +156,11 @@ namespace Proyecto3.WebAPI.Controllers
 
 
         }
+        /// <summary>
+        /// Metodo para eliminar una mascota.
+        /// </summary>
+        /// <param name="mascota">Ojeto <Proyecto3.Entidades.Clases.Mascota> que se desea eliminar.</param>
+        /// <returns>Positivo en caso de realizar todas las acciones necesarias.</returns>
         private bool EliminarMascota(Mascota mascota)
         {
             _dbContexto.Mascotas.Remove(mascota);
@@ -164,7 +169,11 @@ namespace Proyecto3.WebAPI.Controllers
 
             return true;
         }
-
+        /// <summary>
+        /// Metodo para eliminar los procedimientos de una mascota.
+        /// </summary>
+        /// <param name="mascota">Ojeto <Proyecto3.Entidades.Clases.Mascota> asignada al Procedimiento </param>
+        /// <returns>Positivo en caso de realizar todas las acciones necesarias.</returns>
         private bool EliminarProcedimientosDeMascota(Mascota mascota)
         {
             var procedimientos = from p in _dbContexto.Procedimientos
