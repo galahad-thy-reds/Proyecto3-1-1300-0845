@@ -9,3 +9,21 @@ Recuerde que todo el sitio web debe ser navegable, es decir debe poder tener mec
 El estudiante debe presentar el instrumento con todo el código fuente. El video debe ser presentado en la herramienta Moodle en una carpeta con nombre Proyecto 3.
 
 Cualquier diferencia con el nombre de la carpeta o el lugar en donde esté. Automáticamente la nota que obtendrá en el instrumento es de 20.
+
+# Instrucciones para crear la base de datos
+Para la ejecución del Proyecto 3, **es necesario la base de datos apropiada**. Los siguiente opciones le permiten crear o restaurar la base de datos.
+
+## OPCIÓN 1: Crear la base de datos con el archivo script
+* Abra el SQL Mangement Studio.
+* Ubique el archivo **"Proyecto3-1-1300-0845-Creacion de Base de Datos.sql"** en su sistema de archivos.
+* Abra el archivo.
+* Ejecute el archivo.
+* Actualice la lista de bases de datos.
+
+## OPCIÓN 2: Restaurar la base de datos mediante el archivo de respaldo
+* Abra el SQL Mangement Studio
+* Click derecho en la lista de base de datos
+* Utilice la opción "Restaurar base de datos"
+* Ubique el archivo **"Proyecto3-1-1300-0845.bak"** en su sistema de archivos
+* Seleccione el archivo de respaldo y restaurelo
+* Actualice la lista de base de datos
